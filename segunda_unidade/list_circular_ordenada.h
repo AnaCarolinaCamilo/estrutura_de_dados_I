@@ -15,7 +15,7 @@ typedef struct
 }Lista;
 
 # ifndef LIST_CIRCULAR_H
-# define LIST_CIRCULAR_H
+# define LIST_CIRCULAR_H 
 
 void criar_lista(Lista *lista){
     lista->inicio = NULL;
