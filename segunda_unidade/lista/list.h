@@ -39,7 +39,7 @@ void lst_insere_começo(Lista **lista, int i)
 
 // inserção no fim da lista 
 
-void lis_insere_final(Lista **lista, int i){
+void lst_insere_final(Lista **lista, int i){
     Lista *aux,*novo = (Lista*)malloc(sizeof(Lista));
     if(novo){
         novo->info = i;
@@ -68,7 +68,7 @@ void lis_insere_final(Lista **lista, int i){
 
 // inserção no meio da lista
 
-void inserir_no_meio(Lista **lista, int i, int ant){
+void lst_insere_meio(Lista **lista, int i, int ant){
     Lista *novo, *aux = (Lista*)malloc(sizeof(Lista));
     if(novo){
         novo->info = i;
@@ -93,53 +93,59 @@ void inserir_no_meio(Lista **lista, int i, int ant){
 
 // função de imprimir a lista
 void lst_imprime(Lista *lista){
-    printf("\n Lista: ");
-    while (lista)
-    {
-        printf("%d\n", lista->info);
+    Lista* p;
+    for(p=lista; p!=NULL; p=p->prox){
+        printf("info= %d\n", p->info);
     }
+}
+// função que retorna o tamanho da lista
+
+int tamanho_lista(Lista* l){
+    int tam = 0;
+    Lista* aux;
+    for(aux=l; aux!=NULL; aux=aux->prox)
+    {
+        tam++;
+    }  
+    return tam;    
 }
 // função de busca: busca um elemento na lista
 
-Lista* lst_busca(Lista **lista, int i){
+Lista* lst_busca(Lista* lista, int i){
     Lista *p;
-    while (p->prox)
-    {
-        if(p->info == i) return p;
+    for(p=lista; p!=NULL; p=p->prox){
+        if(p->info == i){
+            return p;
+        }
     }
     return NULL;
 }
 
-Lista* lst_retira(Lista *lista, int i){
-    Lista *ant = NULL; // ponteiro pro elemento anterior
-    Lista *p = lista; // ponteiro para percorrer a lista
+int lst_retira(Lista **lista, int i){
+    Lista* aux = NULL;
+    Lista* remover = NULL;
 
-    // procura elemento na lista, guardando o anterior
-
-    while (p != NULL && p->info != i)
-    {
-        ant = p;
-        p = p->prox;
-
+    if(*lista){
+        if((*lista)->info == i){
+            remover = *lista;
+            *lista = remover->prox;
+        }
+        else{
+            aux = *lista;
+            while (aux->prox && aux->prox->info != i)
+            {
+                aux = aux->prox;
+            }
+            if(aux->prox){
+                remover = aux->prox;
+                aux->prox = remover->prox;
+            }
+            
+        }
     }
-
-    // verifica se achou o elemento
-    if (p == NULL)
-    {
-        return NULL;
-    }
-    // retira elemento
-    if(ant == NULL){
-        // retira elemento do inicio
-        lista = p->prox;
-    }
-    else{
-        // retira elemento do meio da lista 
-        ant->prox = p->prox;
-    }
-    free(p);
-    return lista;
+    return remover->info;
 }
+
 
 // função para liberar lista
 
@@ -166,10 +172,47 @@ int lst_igual(Lista *l1, Lista *l2){
     }
     return p1==p2; 
 }
+int maiores(Lista* l, int n){
+    int cont = 0;
+    Lista* aux;
+    for(aux=l; aux!= NULL; aux=aux->prox)
+    {
+        if(aux->info > n){
+            cont++;
+        }
+    }  
+    return cont; 
+}
 
+Lista* ultimo(Lista* l){
+    Lista *p;
+    for(p=l; p!=NULL; p=p->prox){
+        if(p->prox == NULL){
+            printf("%d\n", p->info);
+            return p;
+        }
+    }
+    return NULL;
+    return 0;
 
+}
+int lst_vazia(Lista* l){
+    return(l == NULL);
+}
 
+int encontrar_inicio (Lista* l){
+    return l->info;
+}
 
+Lista* concatena(Lista* l1, Lista* l2){
+    while ((!lst_vazia(l2)))
+    {
+        lst_insere_final(&l1,(lst_retira(&l2,(encontrar_inicio(l2)))));
+    }
+
+    return l1;
+    
+}
 
 
 
