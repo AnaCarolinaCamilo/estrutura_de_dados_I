@@ -11,7 +11,7 @@
 
 // fila com vetores 
 
-#define N 5
+#define N 6
 
 // criando struct para fila implementada com vetor 
 
@@ -98,6 +98,16 @@ void fila_imprime(FilaVetor* f){
         printf("%f\n", f->vet[(f->ini+i)%N]);
     }
     
+}
+
+void combina_fila(FilaVetor* f_1, FilaVetor* f_2){
+    FilaVetor* fila_res = fila_vetor_cria();
+    while ((!fila_vazia_vetor(f_1) && (!fila_vazia_vetor(f_2))))
+    {
+        fila_insere_vetor(fila_res, fila_retira_vetor(f_1));
+        fila_insere_vetor(fila_res, fila_retira_vetor(f_2));
+    }
+    fila_imprime(fila_res);
 }
 
 // operações com a fila implementada com lista encadeada simples

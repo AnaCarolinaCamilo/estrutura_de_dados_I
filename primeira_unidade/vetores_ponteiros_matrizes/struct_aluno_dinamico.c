@@ -28,11 +28,8 @@ int main(int argc, char const *argv[])
 
     alunos = (Aluno*)malloc(num_alunos*sizeof(Aluno));
     if (alunos)
-    {
-        /* code */
+    {    
     
-    
-
     // adicionar os dados dos alunos
     for (int i = 0; i < num_alunos; i++)
     {
