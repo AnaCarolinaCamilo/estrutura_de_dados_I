@@ -196,6 +196,17 @@ Lista* ultimo(Lista* l){
     return 0;
 
 }
+
+int ultimo_n(Lista* l){
+    Lista *p;
+    for(p=l; p!=NULL; p=p->prox){
+        if(p->prox == NULL){
+            return p->info;
+        }
+    }
+    return 0;
+
+}
 int lst_vazia(Lista* l){
     return(l == NULL);
 }
@@ -214,7 +225,91 @@ Lista* concatena(Lista* l1, Lista* l2){
     
 }
 
+Lista* retira_n (Lista* l, int n){
+    Lista *p;
+    for(p=l; p!=NULL; p=p->prox){
+        lst_retira(&l, n);
+    }
+    return l;
+}
 
+Lista* separa(Lista* l, int n){
+    Lista* p;
+    Lista* nova = lista_cria();
+    for(p=l; p!=NULL; p=p->prox){
+        if(p->info == n){
+            lst_insere_final(&nova, (lst_retira(&l,p->prox->info)));
+        }
+    }
+    return nova;
+}
+
+Lista* merge (Lista* l1, Lista* l2){
+    Lista* nova = lista_cria();
+    while((!lst_vazia(l1) && !lst_vazia(l2))){
+        lst_insere_final(&nova,(lst_retira(&l1,(encontrar_inicio(l1)))));
+        lst_insere_final(&nova,(lst_retira(&l2,(encontrar_inicio(l2)))));
+    }
+    return nova;
+    
+}
+
+
+Lista* inverte(Lista* l1){
+    Lista* nova = lista_cria();
+    while ((!lst_vazia(l1)))
+    {
+        lst_insere_final(&nova,(lst_retira(&l1,(ultimo_n(l1)))));
+    }
+
+    return nova;
+    
+}
+
+void lst_insere_final_c(Lista **lista, char c){
+    Lista *aux,*novo = (Lista*)malloc(sizeof(Lista));
+    if(novo){
+        novo->info = c;
+        novo ->prox = NULL;
+
+        // verificando se a lista está vazia
+        if (*lista == NULL){
+            *lista = novo;
+        }
+        else{
+            aux = *lista;
+            while (aux->prox)
+            {
+                aux = aux -> prox;
+            }
+            aux ->prox = novo;
+            
+
+        }
+        
+    }
+    else{
+        printf("erro ao alocar memória");
+    }
+}
+
+void lst_imprime_c(Lista *lista){
+    Lista* p;
+    for(p=lista; p!=NULL; p=p->prox){
+        printf("info= %c\n", p->info);
+    }
+}
+
+
+
+Lista* copia(Lista* l){
+    Lista* p;
+    Lista* copia = lista_cria();
+    for(p=l; p!=NULL; p=p->prox){
+        lst_insere_final_c(&copia,p->info);
+    }
+    return copia;
+}
 
 
 
