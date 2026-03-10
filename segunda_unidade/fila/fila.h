@@ -181,9 +181,18 @@ void fila_imprime_lista(FilaLista* f){
     for(q=f->ini; q!= NULL; q=q->prox){
         printf("%f\n", q->info);
     }
-
 }
 
+// função recursiva que recebe f->ini
+void fila_imprime_lista_rec(No* f){
+    if(f == NULL){
+        return;
+    }
+    // imprimir o nó atual
+    printf("%f\n",f->info);
+    // chamada recursiva pro próximo
+    fila_imprime_lista_rec(f->prox);
+}
 
 
 

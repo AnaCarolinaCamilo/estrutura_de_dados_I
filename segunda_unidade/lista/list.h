@@ -310,7 +310,16 @@ Lista* copia(Lista* l){
     }
     return copia;
 }
+// função de imprimir a lista recursivamente
+void lst_imprime_rec(Lista *lista){
+    if(!lst_vazia(lista)){
+        // imprime o primeiro elemento
+        printf("%d\n", lista->info);
+        // imprime sublista
+        lst_imprime_rec(lista->prox);
 
+    }
+}
 
 
 

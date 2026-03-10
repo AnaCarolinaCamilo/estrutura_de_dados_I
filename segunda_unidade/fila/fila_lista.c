@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     printf("Primeiro elemento: %f\n", fila_lista_retira(f));
     printf("Segundo elemento: %f\n", fila_lista_retira(f));
     printf("Configuração da lista:\n");
-    fila_imprime_lista(f);
+    fila_imprime_lista_rec(f->ini);
     libera_fila_lista(f);
     
 

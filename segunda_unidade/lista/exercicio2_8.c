@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     lst_imprime(l_1);
     printf("\n");
     printf("Após a função:\n");
-    lst_imprime(inverte(l_1));
+    lst_imprime_rec(inverte(l_1));
     printf("\n");
     
     
