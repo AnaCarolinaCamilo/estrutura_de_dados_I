@@ -122,8 +122,7 @@ FilaLista* fila_lista_cria(void){
     else printf("Não foi possível alocar a memória");
 }
 
-int fila_lista_insere(FilaLista* f, float v){
-    if(f == NULL) return 0;
+void fila_lista_insere(FilaLista* f, float v){
     No* n = (No*)malloc(sizeof(No));
     if(n != NULL){
     n->info = v; // armazenando a informação

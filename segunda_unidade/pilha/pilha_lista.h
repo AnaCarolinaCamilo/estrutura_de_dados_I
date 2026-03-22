@@ -24,7 +24,7 @@ Pilha* pilha_cria(void){
 
 void pilha_push (Pilha* p, char v){
     No* n = (No*)malloc(sizeof(No));
-    n->info;
+    n->info = v;
     n->prox = p->topo;
     p->topo = n;
 }

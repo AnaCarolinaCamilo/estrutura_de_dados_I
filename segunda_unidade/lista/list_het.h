@@ -146,6 +146,23 @@ float max_area(Lista_het* l){
 
 }
 
+int encontre_numero(*L l){
+    valor* v = (valor*) malloc(sizeof(valor);
+    *l p;
+    for(p=l; p!=NULL;p = p->pi){
+        for(v=l->pv; v!=NULL; v=v->p){
+            if((v->numero) == 10){
+                printf("O número foi encontrado");
+                return 1;
+            }
+
+        }
+    }
+    printf("O número não foi encontrado!");
+    return 0;
+
+}
+
 
 
 

@@ -321,6 +321,16 @@ void lst_imprime_rec(Lista *lista){
     }
 }
 
+void lst_libera_rec(Lista* l){
+    Lista* p = l;
+    if(p == NULL){
+        return;
+    }
+    else{
+        lst_libera_rec(p->prox);
+        free(p);
+    }
+}
 
 
 #endif
