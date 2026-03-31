@@ -22,6 +22,50 @@ Arv* arv_cria(int i, Arv* esq, Arv* dir){
 int arv_vazia(Arv* a){
     return a == NULL;
 }
+Arv* arv_cria_no(int i){
+    Arv* p = (Arv*)malloc(sizeof(Arv));
+    p->info = i;
+    p->esq = NULL;
+    p->dir = NULL;
+
+
+}
+Arv* insere_n_recursivo(Arv** raiz, int dado){
+    
+    Arv* novo = arv_cria_no(dado);
+    Arv* atual = *raiz;
+    Arv* pai = NULL;
+
+    while (atual != NULL)
+    {
+        pai = atual;
+        if(dado < atual->info) atual = atual->esq;
+        else if(dado > atual->info) atual = atual->dir;
+        else return; 
+    }
+    if(pai == NULL) *raiz = novo;
+    else if(dado < pai->info) pai->esq = novo;
+    else pai->dir = novo;
+}
+
+static int max2 (int a, int b){
+    return (a>b) ? a:b;
+}
+
+int arv_altura(Arv* a){
+    if(arv_vazia(a))
+        return -1;
+    else
+        return 1 + max2(arv_altura(a->esq->info), arv_altura(a->dir->info));
+}
+
+int qtd_nos(Arv* raiz){
+    if(raiz == NULL) return 0;
+    else return 1 + qtd_nos(raiz->esq) + qtd_nos(raiz->dir);
+
+    return(raiz == NULL) ? 0 : 1 + qtd_nos(raiz->esq) + qtd_nos(raiz->dir);
+}
+
 
 void arv_mostra(Arv* a){ // mostrar infix
     printf("<");
