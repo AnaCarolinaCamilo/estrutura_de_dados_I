@@ -96,7 +96,7 @@ void pre_ordem(Arv* a){
     }
 }
 
-void em_ordem(Arv* a){
+void em_ordem(Arv* a){      
     if(a->esq != NULL){
         em_ordem(a->esq);
     }

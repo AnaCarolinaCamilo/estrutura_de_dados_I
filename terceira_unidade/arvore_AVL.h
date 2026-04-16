@@ -63,12 +63,12 @@ static int max2 (int a, int b){
     }
 }
 
-int arv_altura_alt(Arv* a){
-    if(arv_vazia(a))
-        return -1;
-    else
-        return a->altura;
-}
+// int arv_altura_alt(Arv* a){
+//     if(arv_vazia(a))
+//         return -1;
+//     else
+//         return a->altura;
+// }
 int arv_altura(Arv* a){
     if(arv_vazia(a))
         return -1;
@@ -133,7 +133,7 @@ Arv* rotacao_esquerda_direita(Arv* a){
 Arv* balancear(Arv* a){
     short fb = fatorBalanceamento(a);
     if(fb < -1 && fatorBalanceamento(a->dir) <= 0) a = rotacao_esquerda(a);
-    else if(fb > 1 && fatorBalanceamento(a->esq) <= 0) a = rotacao_direita(a);
+    else if(fb > 1 && fatorBalanceamento(a->esq) >= 0) a = rotacao_direita(a);
     else if(fb > 1 && fatorBalanceamento(a->esq) < 0) a = rotacao_esquerda_direita(a);
     else if(fb < -1 && fatorBalanceamento(a->dir) > 0) a = rotacao_direita_esquerda(a);
 
